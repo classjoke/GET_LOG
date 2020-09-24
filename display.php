@@ -28,6 +28,13 @@
             }
             return $name;
         }
+        function name_color_chenge($value, $name){
+            preg_match("/$name/u", $value, $res, PREG_OFFSET_CAPTURE);
+            $name_count = strlen($name);
+            $color_name = '<span style = '."color:#ff0000;".'>'.$name."</span>";
+            $value = substr_replace($value, $color_name, $res[0][1], $name_count);
+            return $value;
+        }
         require_once("pdo.php");
         $pdo = pdo_connect();
         $date=get_date();
@@ -47,10 +54,12 @@
                     echo $row['id'].",";
                     if(substr($row["comment"], -1) == "-"){
                         $ids = $row['id'];
-                        $jo =  $row['comment']
+                        $row['comment'] = name_color_chenge($row['comment'], $name);
+                        $display_comment =  $row['comment']
                         ."<a href='leave.php?date=$date&id=$ids'>離席</a>";
-                        echo $jo;
+                        echo $display_comment;
                     }else{
+                        $row['comment'] = name_color_chenge($row['comment'], $name);
                         echo $row['comment'];
                     }
                     echo "<hr>";
