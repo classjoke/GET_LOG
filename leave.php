@@ -18,7 +18,7 @@
             $results = $stmt->fetch(PDO::FETCH_COLUMN);
             $comment = $results.date('H:i');
             // echo $comment;
-            $edit_sql = "UPDATE $board_name SET comment=:comment, date=now() WHERE id=:id";
+            $edit_sql = "UPDATE $board_name SET comment=:comment WHERE id=:id";
             $stmt = $pdo->prepare($edit_sql);
             $stmt ->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt ->bindParam(':comment', $comment, PDO::PARAM_STR);
