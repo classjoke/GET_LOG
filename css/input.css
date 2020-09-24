@@ -1,0 +1,12 @@
+@charset "utf-8"; /*この指定は、外部スタイルシートファイル内でのみ使用 文字化けを防ぐため*/
+
+t1{
+    color:blue;
+    float: right;
+}
+h3{
+    margin: 0px;
+}
+h2{
+    margin: 0px;
+}
